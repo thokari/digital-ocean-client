@@ -1,0 +1,20 @@
+apply plugin: "groovy"
+apply plugin: "maven"
+apply plugin: "eclipse"
+apply plugin: "idea"
+
+repositories { jcenter() }
+dependencies {
+	compile "org.codehaus.groovy.modules.http-builder:http-builder:0.6"
+	testCompile "junit:junit:4.11"
+}
+
+group = "de.thokari"
+archivesBaseName = "digital-ocean-client"
+version = "0.7"
+
+// always run tests
+test.dependsOn cleanTest
+jar.dependsOn test, groovydoc
+
+task wrapper(type: Wrapper) { gradleVersion = "1.7" }
